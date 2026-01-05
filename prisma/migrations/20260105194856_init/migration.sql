@@ -52,6 +52,8 @@ CREATE TABLE "Order" (
     "status" "OrderStatus" NOT NULL,
     "consumptionMethod" "ConsumptionMethod" NOT NULL,
     "restaurantId" TEXT NOT NULL,
+    "customerName" TEXT NOT NULL,
+    "customerCpf" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -70,6 +72,9 @@ CREATE TABLE "OrderProduct" (
 
     CONSTRAINT "OrderProduct_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Restaurant_slug_key" ON "Restaurant"("slug");
 
 -- AddForeignKey
 ALTER TABLE "MenuCategory" ADD CONSTRAINT "MenuCategory_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE CASCADE ON UPDATE CASCADE;
